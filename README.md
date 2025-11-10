@@ -6,7 +6,7 @@ It is based on Evidence-Modeler2 + PASA approach. It can annotate a genome using
 It needs a config file and a spec file (json file with instructions on which resources should slurm use for each of the jobs). Both files are created by the script "create_config_annotation.py" that is located in the bin directory. To check all the options accepted by the script, do:
 
 ```
-bin/create_config_annotation.py -h
+bin/create_config_annotation.v2.py -h
 ```
 
 The final command would look like this: 
