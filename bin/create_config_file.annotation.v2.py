@@ -134,7 +134,7 @@ class CreateConfigurationFile(object):
         self.redmask_mem = "100G"
 
         #BLAST PARAMETERS
-        self.blastdb = "/scratch/project/devel/aateam/blastdbs/swissprot"          #Blast database to check presence of protein families in RedMask library
+        self.blastdb = "/scratch_isilon/groups/assembly/data/databases/scratch_blast_db/swissprot"          #Blast database to check presence of protein families in RedMask library
         self.evalue = 0.000001
         self.blastCores = 24
 
@@ -1240,7 +1240,7 @@ class CreateConfigurationFile(object):
         if args.run_augustus or args.run_augustus_hints:
           args.aug_config_path = os.path.abspath(args.aug_config_path) + "/"
           if args.aug_species == None:
-            print ("ERROR Augustus trained species has not been specified. Please, specify it, remember that if no parameters are available, the pipeline will run the training step.")
+            print ("ERROR: Augustus trained species has not been specified. Please, specify it, remember that if no parameters are available, the pipeline will run the training step.")
           elif not os.path.exists(args.aug_config_path + "species/" + args.aug_species):
             print ("WARNING no augustus parameters found for " + args.aug_species + " in " + args.aug_config_path + "species/, the pipeline will train augustus")
           elif not os.path.exists(os.path.dirname(args.augustus_prediction) + "/" + args.aug_species + ".trained"):

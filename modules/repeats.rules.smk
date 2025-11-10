@@ -61,8 +61,8 @@ rule filter_prot:
     "bedtools getfasta -fi {input.genome} -bed {input.repeat_bed} -fo {output.repeat_fasta};"
     "blastx -query {output.repeat_fasta} -db {params.blastdb} -num_threads {threads} -outfmt 6 -evalue {params.evalue} -out {output.blast};"
     "cut -f 1 {output.blast} | sort | uniq | perl -ane 'if ($_ =~ m/([^:]+):([^-]+)-([^\n]+)/){{print \"$1\t$2\t$3\n\";}}' > {params.repdir}repeats.blast.bed ;"
-    "bedtools intersect -f 1 -r -v -a {input.repeat_bed} -b {output.redmask_bed} | bedtools merge -i - > {params.repdir}repeats.noblast.bed;"
-    "bedtools maskfasta -fi {input.genome} -bed {params.repdir}repeats.noblast.bed -fo {output.masked_genome};"
+    "bedtools intersect -f 1 -r -v -a {input.repeat_bed} -b {params.repdir}repeats.blast.bed | bedtools merge -i - > {output.redmask_bed};"
+    "bedtools maskfasta -fi {input.genome} -bed {output.redmask_bed} -fo {output.masked_genome};"
 
 rule get_repeats_gff:
   input:
